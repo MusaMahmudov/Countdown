@@ -7,10 +7,16 @@ var day = 0;
 var hour = 0;
 var minute = 0;
 function timerShow(min) {
-  if (min >= 148600) {
+  if (min >= 148600 ) {
     alert("too long");
     clearInterval(countdown);
-  } else {
+  }else if(min < 0)
+  {
+    alert("error");
+    clearInterval(countdown);
+
+  } 
+  else {
     minute = min;
     countdown;
   }
@@ -90,4 +96,4 @@ let countdown = setInterval(function () {
     clearInterval(countdown);
   }
 }, 1000);
-timerShow(351);
+timerShow(-351);

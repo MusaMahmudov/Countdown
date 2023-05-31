@@ -7,8 +7,9 @@ var day = 0;
 var hour = 0;
 var minute = 0;
 function timerShow(min) {
-  if (minute >= 148600) {
+  if (min >= 148600) {
     alert("too long");
+    clearInterval(countdown);
   } else {
     minute = min;
     countdown;
@@ -43,22 +44,26 @@ let countdown = setInterval(function () {
 
       if ((minute - day * 1440) / 60 >= 1) {
         hour = Math.floor((minute - day * 1440) / 60);
+        console.log(hour);
+
         minute = minute % 60;
       } else {
         minute = minute % 1440;
       }
-    } else if (minute >= 60 && minute < 1440) {
+    } else if (minute >= 60 && minute < 1440 && hour !== 99) {
       hour = Math.floor(minute / 60);
       minute = minute % 60;
     }
     if (day >= 99) {
-      hour = Math.floor((minute - day * 1440) / 60) + (day - 99) * 24;
+      hour = hour + (day - 99) * 24;
+
       day = 99;
       if (hour >= 99) {
-        minute = minute - (day * 1440 + hour * 60) + (hour - 99) * 60;
+        minute = minute + (hour - 99) * 60;
         hour = 99;
       }
     }
+
     if (minute < 10) {
       minutes.innerHTML = `0${minute}`;
     } else {
@@ -85,4 +90,4 @@ let countdown = setInterval(function () {
     clearInterval(countdown);
   }
 }, 1000);
-timerShow(1);
+timerShow(351);
